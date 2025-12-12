@@ -67,22 +67,35 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 6px;
-            padding-bottom: 4px;
-            border-bottom: 2px solid rgba(148, 163, 184, 0.3);
+            margin-bottom: 8px;
+            padding: 8px 12px;
+            background: linear-gradient(135deg, rgba(51, 65, 85, 0.8) 0%, rgba(30, 41, 59, 0.9) 100%);
+            border-radius: 8px;
+            border: 2px solid rgba(148, 163, 184, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             flex-shrink: 0;
         }
 
         h1 {
-            font-size: 1rem;
+            font-size: 1.3rem;
             font-weight: 900;
             letter-spacing: -0.5px;
             color: #ffffff;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.4),
+                0 4px 8px rgba(0, 0, 0, 0.2);
             white-space: nowrap;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding: 4px 0;
         }
 
-        h1::before { content: '🚀 '; }
+        h1::before { 
+            content: '🚀 '; 
+            -webkit-text-fill-color: initial;
+        }
 
         .badges-container {
             display: flex;
@@ -172,6 +185,12 @@
             border-radius: 3px;
         }
 
+        /* Conteneur interne pour le zoom sans casser le sticky */
+        .roadmap-inner {
+            transform-origin: top left;
+            transition: transform 0.2s ease;
+        }
+
         /* GRILLE 15 COLONNES : 12 mois 2026 + 3 mois 2027 */
         .grid-layout {
             display: grid;
@@ -181,16 +200,38 @@
             min-width: calc(var(--sidebar-width) + (15 * var(--col-min)) + (16 * var(--gap)));
         }
 
+        /* COLONNE STICKY GAUCHE - AMÉLIORATION */
         .swimlane-label, 
         .timeline-header > div:first-child {
             position: sticky;
             left: 0;
             z-index: 20;
-            box-shadow: 3px 0 12px rgba(0, 0, 0, 0.4);
-        }
-        .timeline-header > div:first-child { 
-            z-index: 21; 
             background: var(--bg-page);
+            box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5);
+            /* Empêcher le bleed-through */
+            isolation: isolate;
+        }
+        
+        .timeline-header > div:first-child { 
+            z-index: 25; 
+            background: var(--bg-page);
+        }
+
+        /* Fix pour sticky avec parent scrollable */
+        .swimlane-row {
+            position: relative;
+        }
+
+        /* Amélioration du rendu sticky */
+        .swimlane-label::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -10px;
+            bottom: 0;
+            width: 10px;
+            background: linear-gradient(to right, rgba(30, 41, 59, 0.8) 0%, transparent 100%);
+            pointer-events: none;
         }
 
         .marker-overlay {
@@ -573,8 +614,8 @@
                 --card-pad-x: 7px;
             }
             body { padding: 5px 6px; }
-            .page-header { margin-bottom: 5px; }
-            h1 { font-size: 0.92rem; }
+            .page-header { margin-bottom: 6px; padding: 6px 10px; }
+            h1 { font-size: 1.1rem; }
         }
 
         @media (max-height: 800px) {
@@ -593,6 +634,7 @@
             .month-name { font-size: 0.52rem; }
             .top5-badge { font-size: 0.44rem; padding: 1px 5px; }
             .status-badge { font-size: 0.44rem; padding: 1px 5px; }
+            h1 { font-size: 1rem; }
         }
 
         @media (max-height: 720px) {
@@ -604,8 +646,8 @@
                 --font-title: 0.6rem;
                 --font-meta: 0.46rem;
             }
-            .page-header { padding-bottom: 3px; margin-bottom: 4px; }
-            h1 { font-size: 0.82rem; }
+            .page-header { padding: 4px 8px; margin-bottom: 4px; }
+            h1 { font-size: 0.9rem; }
             .period-badge { font-size: 0.5rem; padding: 2px 8px; }
             .swimlane-icon { font-size: 0.68rem; }
             .swimlane-title { font-size: 0.52rem; }
@@ -628,22 +670,100 @@
             .swimlane-title { display: none; }
         }
 
+        /* Zoom controls via CSS variables - sans casser sticky */
         @media (max-height: 650px), (max-width: 1150px) {
-            .roadmap-scroll-wrapper {
-                transform: scale(0.9);
-                transform-origin: top left;
-                width: 111.11%;
-                height: 111.11%;
+            :root {
+                --sidebar-width: 58px;
+                --col-min: 45px;
+                --gap: 2px;
+                --card-min-h: 24px;
+                --font-title: 0.56rem;
+                --font-meta: 0.44rem;
+                --card-pad-y: 3px;
+                --card-pad-x: 5px;
             }
+            .swimlane-icon { font-size: 0.62rem; }
+            .month-col { padding: 2px 0; }
+            .month-name { font-size: 0.44rem; }
+            .month-year { font-size: 0.38rem; }
+            .top5-badge { font-size: 0.4rem; padding: 1px 4px; }
+            .status-badge { font-size: 0.4rem; padding: 1px 4px; }
+            h1 { font-size: 0.85rem; }
+            .period-badge { font-size: 0.45rem; padding: 2px 6px; }
+            .legend-bar { padding: 3px 6px; gap: 8px; }
+            .legend-title { font-size: 0.5rem; }
+            .legend-desc { font-size: 0.45rem; }
+            .page-header { padding: 4px 6px; margin-bottom: 4px; }
         }
 
         @media (max-height: 580px), (max-width: 1000px) {
-            .roadmap-scroll-wrapper {
-                transform: scale(0.8);
-                transform-origin: top left;
-                width: 125%;
-                height: 125%;
+            :root {
+                --sidebar-width: 50px;
+                --col-min: 38px;
+                --gap: 1px;
+                --card-min-h: 20px;
+                --font-title: 0.5rem;
+                --font-meta: 0.4rem;
+                --card-pad-y: 2px;
+                --card-pad-x: 4px;
             }
+            .swimlane-icon { font-size: 0.55rem; }
+            .month-col { padding: 1px 0; }
+            .month-name { font-size: 0.4rem; }
+            .month-year { font-size: 0.34rem; }
+            .top5-badge { font-size: 0.36rem; padding: 1px 3px; }
+            .status-badge { font-size: 0.36rem; padding: 1px 3px; }
+            h1 { font-size: 0.75rem; }
+            .period-badge { font-size: 0.4rem; padding: 1px 5px; }
+            .legend-bar { display: none; }
+            .page-header { margin-bottom: 3px; padding: 3px 5px; }
+        }
+
+        /* Contrôles de zoom interactifs */
+        .zoom-controls {
+            position: fixed;
+            bottom: 12px;
+            right: 12px;
+            display: flex;
+            gap: 6px;
+            z-index: 100;
+            background: rgba(30, 41, 59, 0.95);
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .zoom-btn {
+            background: linear-gradient(145deg, #475569, #334155);
+            border: 1px solid #64748b;
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .zoom-btn:hover {
+            background: linear-gradient(145deg, #60a5fa, #3b82f6);
+            border-color: #93c5fd;
+            transform: scale(1.05);
+        }
+
+        .zoom-level {
+            color: #cbd5e1;
+            font-size: 0.6rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            min-width: 40px;
+            justify-content: center;
         }
     </style>
 </head>
@@ -735,7 +855,7 @@
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Jan - Fév</span>
+                        <span class="card-meta-text">01/01 - 28/02</span>
                     </div>
                 </div>
             </div>
@@ -759,7 +879,7 @@
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Mars - Avril</span>
+                        <span class="card-meta-text">01/03 - 30/04</span>
                     </div>
                 </div>
             </div>
@@ -785,7 +905,7 @@
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Avril - Mai</span>
+                        <span class="card-meta-text">01/04 - 31/05</span>
                     </div>
                 </div>
             </div>
@@ -801,7 +921,7 @@
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Avril - Juin</span>
+                        <span class="card-meta-text">01/04 - 30/06</span>
                     </div>
                 </div>
             </div>
@@ -813,7 +933,7 @@
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Juil - Août</span>
+                        <span class="card-meta-text">01/07 - 31/08</span>
                     </div>
                 </div>
             </div>
@@ -825,7 +945,7 @@
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Sept - Oct</span>
+                        <span class="card-meta-text">01/09 - 31/10</span>
                     </div>
                 </div>
             </div>
@@ -837,7 +957,7 @@
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Nov - Jan</span>
+                        <span class="card-meta-text">01/11 - 31/01/27</span>
                     </div>
                 </div>
             </div>
@@ -861,7 +981,7 @@
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Mai - Juin</span>
+                        <span class="card-meta-text">01/05 - 30/06</span>
                     </div>
                 </div>
             </div>
@@ -883,7 +1003,7 @@
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Juin</span>
+                        <span class="card-meta-text">01/06 - 30/06</span>
                     </div>
                 </div>
             </div>
@@ -895,7 +1015,7 @@
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Juil</span>
+                        <span class="card-meta-text">01/07 - 31/07</span>
                     </div>
                 </div>
             </div>
@@ -907,7 +1027,7 @@
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Juil - Août</span>
+                        <span class="card-meta-text">15/07 - 15/08</span>
                     </div>
                 </div>
             </div>
@@ -929,7 +1049,7 @@
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Août - Sept</span>
+                        <span class="card-meta-text">01/08 - 30/09</span>
                     </div>
                 </div>
             </div>
@@ -941,7 +1061,7 @@
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Oct</span>
+                        <span class="card-meta-text">01/10 - 31/10</span>
                     </div>
                 </div>
             </div>
@@ -953,7 +1073,7 @@
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Oct</span>
+                        <span class="card-meta-text">01/10 - 31/10</span>
                     </div>
                 </div>
             </div>
@@ -965,7 +1085,7 @@
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Déc</span>
+                        <span class="card-meta-text">01/11 - 31/12</span>
                     </div>
                 </div>
             </div>
@@ -987,7 +1107,7 @@
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Nov</span>
+                        <span class="card-meta-text">01/11 - 30/11</span>
                     </div>
                 </div>
             </div>
@@ -999,7 +1119,7 @@
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Déc - Jan</span>
+                        <span class="card-meta-text">01/12 - 31/01/27</span>
                     </div>
                 </div>
             </div>
@@ -1011,7 +1131,7 @@
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Déc</span>
+                        <span class="card-meta-text">01/12 - 31/12</span>
                     </div>
                 </div>
             </div>
@@ -1033,7 +1153,7 @@
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Jan</span>
+                        <span class="card-meta-text">01/01/27 - 31/01/27</span>
                     </div>
                 </div>
             </div>
@@ -1132,6 +1252,96 @@
 
     </div>
 </div>
+
+<!-- Contrôles de zoom -->
+<div class="zoom-controls">
+    <button class="zoom-btn" onclick="zoomOut()" title="Zoom arrière">−</button>
+    <span class="zoom-level" id="zoomLevel">100%</span>
+    <button class="zoom-btn" onclick="zoomIn()" title="Zoom avant">+</button>
+    <button class="zoom-btn" onclick="resetZoom()" title="Réinitialiser" style="font-size: 0.6rem;">⟲</button>
+</div>
+
+<script>
+    let currentZoom = 100;
+    const minZoom = 50;
+    const maxZoom = 150;
+    const zoomStep = 10;
+    
+    const root = document.documentElement;
+    const zoomLevelDisplay = document.getElementById('zoomLevel');
+    
+    // Valeurs de base
+    const baseValues = {
+        sidebarWidth: 82,
+        colMin: 65,
+        gap: 3,
+        cardMinH: 32,
+        fontTitle: 0.78,
+        fontMeta: 0.58,
+        cardPadY: 6,
+        cardPadX: 8
+    };
+    
+    function applyZoom(zoom) {
+        const factor = zoom / 100;
+        
+        root.style.setProperty('--sidebar-width', `${baseValues.sidebarWidth * factor}px`);
+        root.style.setProperty('--col-min', `${baseValues.colMin * factor}px`);
+        root.style.setProperty('--gap', `${baseValues.gap * factor}px`);
+        root.style.setProperty('--card-min-h', `${baseValues.cardMinH * factor}px`);
+        root.style.setProperty('--font-title', `${baseValues.fontTitle * factor}rem`);
+        root.style.setProperty('--font-meta', `${baseValues.fontMeta * factor}rem`);
+        root.style.setProperty('--card-pad-y', `${baseValues.cardPadY * factor}px`);
+        root.style.setProperty('--card-pad-x', `${baseValues.cardPadX * factor}px`);
+        
+        zoomLevelDisplay.textContent = `${zoom}%`;
+    }
+    
+    function zoomIn() {
+        if (currentZoom < maxZoom) {
+            currentZoom += zoomStep;
+            applyZoom(currentZoom);
+        }
+    }
+    
+    function zoomOut() {
+        if (currentZoom > minZoom) {
+            currentZoom -= zoomStep;
+            applyZoom(currentZoom);
+        }
+    }
+    
+    function resetZoom() {
+        currentZoom = 100;
+        applyZoom(currentZoom);
+    }
+    
+    // Zoom avec Ctrl + molette
+    document.addEventListener('wheel', function(e) {
+        if (e.ctrlKey) {
+            e.preventDefault();
+            if (e.deltaY < 0) {
+                zoomIn();
+            } else {
+                zoomOut();
+            }
+        }
+    }, { passive: false });
+    
+    // Raccourcis clavier
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && (e.key === '+' || e.key === '=')) {
+            e.preventDefault();
+            zoomIn();
+        } else if (e.ctrlKey && e.key === '-') {
+            e.preventDefault();
+            zoomOut();
+        } else if (e.ctrlKey && e.key === '0') {
+            e.preventDefault();
+            resetZoom();
+        }
+    });
+</script>
 
 </body>
 </html>
