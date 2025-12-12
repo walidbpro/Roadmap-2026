@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roadmap 2026-2027</title>
+    <title>Roadmap Plateforme 2026-2028</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
@@ -57,10 +57,120 @@
         .container {
             max-width: 100%;
             margin: 0 auto;
-            animation: fadeInUp 0.4s ease-out;
             height: calc(100vh - 12px);
             display: flex;
             flex-direction: column;
+        }
+
+        /* TABS DE NAVIGATION */
+        .tabs-container {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 6px;
+            flex-shrink: 0;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px 8px 0 0;
+            font-family: inherit;
+            font-size: 0.75rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: transparent;
+            transition: background 0.3s ease;
+        }
+
+        .tab-btn-renfort {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+            color: #93c5fd;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .tab-btn-renfort:hover {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .tab-btn-renfort.active {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.4) 0%, rgba(139, 92, 246, 0.4) 100%);
+            color: #ffffff;
+            border-color: #60a5fa;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .tab-btn-renfort.active::before {
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+        }
+
+        .tab-btn-sans {
+            background: linear-gradient(135deg, rgba(248, 113, 113, 0.2) 0%, rgba(251, 191, 36, 0.2) 100%);
+            color: #fca5a5;
+            border: 2px solid rgba(248, 113, 113, 0.3);
+        }
+
+        .tab-btn-sans:hover {
+            background: linear-gradient(135deg, rgba(248, 113, 113, 0.3) 0%, rgba(251, 191, 36, 0.3) 100%);
+            border-color: rgba(248, 113, 113, 0.5);
+        }
+
+        .tab-btn-sans.active {
+            background: linear-gradient(135deg, rgba(248, 113, 113, 0.4) 0%, rgba(251, 191, 36, 0.4) 100%);
+            color: #ffffff;
+            border-color: #f87171;
+            box-shadow: 0 4px 15px rgba(248, 113, 113, 0.3);
+        }
+
+        .tab-btn-sans.active::before {
+            background: linear-gradient(90deg, #f87171, #fbbf24);
+        }
+
+        .tab-icon { font-size: 1rem; }
+
+        .tab-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+        }
+
+        .tab-title { font-size: 0.8rem; }
+
+        .tab-subtitle {
+            font-size: 0.55rem;
+            font-weight: 600;
+            opacity: 0.8;
+        }
+
+        /* PAGES */
+        .page {
+            display: none;
+            flex: 1;
+            flex-direction: column;
+            animation: fadeInUp 0.4s ease-out;
+            overflow: hidden;
+        }
+
+        .page.active {
+            display: flex;
         }
 
         .page-header {
@@ -69,31 +179,48 @@
             align-items: center;
             margin-bottom: 8px;
             padding: 8px 12px;
-            background: linear-gradient(135deg, rgba(51, 65, 85, 0.8) 0%, rgba(30, 41, 59, 0.9) 100%);
             border-radius: 8px;
-            border: 2px solid rgba(148, 163, 184, 0.3);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             flex-shrink: 0;
+        }
+
+        .page-header-renfort {
+            background: linear-gradient(135deg, rgba(51, 65, 85, 0.8) 0%, rgba(30, 41, 59, 0.9) 100%);
+            border: 2px solid rgba(148, 163, 184, 0.3);
+        }
+
+        .page-header-sans {
+            background: linear-gradient(135deg, rgba(51, 65, 85, 0.8) 0%, rgba(30, 41, 59, 0.9) 100%);
+            border: 2px solid rgba(248, 113, 113, 0.5);
         }
 
         h1 {
             font-size: 1.3rem;
             font-weight: 900;
             letter-spacing: -0.5px;
-            color: #ffffff;
             text-shadow: 
                 0 2px 4px rgba(0, 0, 0, 0.4),
                 0 4px 8px rgba(0, 0, 0, 0.2);
             white-space: nowrap;
-            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             padding: 4px 0;
         }
 
-        h1::before { 
-            content: '🚀 '; 
+        .h1-renfort {
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .h1-sans {
+            background: linear-gradient(135deg, #f87171 0%, #fbbf24 50%, #fb923c 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        h1 .icon {
             -webkit-text-fill-color: initial;
         }
 
@@ -104,29 +231,97 @@
         }
 
         .period-badge {
-            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
             padding: 3px 12px;
             border-radius: 12px;
             font-weight: 800;
             font-size: 0.6rem;
             color: #ffffff;
-            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.5);
             white-space: nowrap;
             letter-spacing: 0.5px;
             border: 2px solid rgba(255, 255, 255, 0.2);
         }
 
-        .margin-badge {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        .period-badge-renfort {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.5);
+        }
+
+        .period-badge-sans {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            box-shadow: 0 2px 8px rgba(220, 38, 38, 0.5);
+        }
+
+        .warning-badge {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
             padding: 3px 12px;
             border-radius: 12px;
             font-weight: 800;
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             color: #ffffff;
-            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.5);
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.5);
             white-space: nowrap;
             letter-spacing: 0.5px;
             border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* COMPARISON BOX */
+        .comparison-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 8px 16px;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, rgba(248, 113, 113, 0.1) 0%, rgba(251, 191, 36, 0.1) 100%);
+            border: 2px solid rgba(248, 113, 113, 0.3);
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .comparison-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .comparison-label {
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+        }
+
+        .comparison-value {
+            font-size: 0.85rem;
+            font-weight: 900;
+            padding: 2px 10px;
+            border-radius: 6px;
+        }
+
+        .comparison-value.old {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: #ffffff;
+        }
+
+        .comparison-value.new {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: #ffffff;
+        }
+
+        .comparison-arrow {
+            font-size: 1.2rem;
+            color: #64748b;
+        }
+
+        .comparison-delta {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 900;
+            padding: 4px 12px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
         }
 
         .legend-bar {
@@ -167,6 +362,17 @@
             font-weight: 500;
         }
 
+        .team-badge {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-transform: uppercase;
+            box-shadow: 0 2px 6px rgba(220, 38, 38, 0.4);
+        }
+
         .roadmap-scroll-wrapper {
             flex: 1;
             overflow: auto;
@@ -185,14 +391,13 @@
             border-radius: 3px;
         }
 
-        /* Conteneur interne pour le zoom sans casser le sticky */
         .roadmap-inner {
             transform-origin: top left;
             transition: transform 0.2s ease;
         }
 
-        /* GRILLE 15 COLONNES : 12 mois 2026 + 3 mois 2027 */
-        .grid-layout {
+        /* GRILLE - VERSION RENFORT (15 colonnes) */
+        .grid-layout-renfort {
             display: grid;
             grid-template-columns: var(--sidebar-width) repeat(15, minmax(var(--col-min), 1fr));
             gap: var(--gap);
@@ -200,7 +405,16 @@
             min-width: calc(var(--sidebar-width) + (15 * var(--col-min)) + (16 * var(--gap)));
         }
 
-        /* COLONNE STICKY GAUCHE - AMÉLIORATION */
+        /* GRILLE - VERSION SANS RENFORT (32 colonnes) */
+        .grid-layout-sans {
+            display: grid;
+            grid-template-columns: var(--sidebar-width) repeat(32, minmax(50px, 1fr));
+            gap: 2px;
+            align-items: stretch;
+            min-width: calc(var(--sidebar-width) + (32 * 50px) + (33 * 2px));
+        }
+
+        /* COLONNE STICKY GAUCHE */
         .swimlane-label, 
         .timeline-header > div:first-child {
             position: sticky;
@@ -208,7 +422,6 @@
             z-index: 20;
             background: var(--bg-page);
             box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5);
-            /* Empêcher le bleed-through */
             isolation: isolate;
         }
         
@@ -217,12 +430,10 @@
             background: var(--bg-page);
         }
 
-        /* Fix pour sticky avec parent scrollable */
         .swimlane-row {
             position: relative;
         }
 
-        /* Amélioration du rendu sticky */
         .swimlane-label::after {
             content: '';
             position: absolute;
@@ -603,6 +814,52 @@
             font-weight: 700;
         }
 
+        /* Contrôles de zoom */
+        .zoom-controls {
+            position: fixed;
+            bottom: 12px;
+            right: 12px;
+            display: flex;
+            gap: 6px;
+            z-index: 100;
+            background: rgba(30, 41, 59, 0.95);
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .zoom-btn {
+            background: linear-gradient(145deg, #475569, #334155);
+            border: 1px solid #64748b;
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .zoom-btn:hover {
+            background: linear-gradient(145deg, #60a5fa, #3b82f6);
+            border-color: #93c5fd;
+            transform: scale(1.05);
+        }
+
+        .zoom-level {
+            color: #cbd5e1;
+            font-size: 0.6rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            min-width: 40px;
+            justify-content: center;
+        }
 
         /* RESPONSIVE */
         @media (max-height: 900px) {
@@ -616,6 +873,8 @@
             body { padding: 5px 6px; }
             .page-header { margin-bottom: 6px; padding: 6px 10px; }
             h1 { font-size: 1.1rem; }
+            .tabs-container { margin-bottom: 4px; }
+            .tab-btn { padding: 8px 12px; }
         }
 
         @media (max-height: 800px) {
@@ -635,6 +894,8 @@
             .top5-badge { font-size: 0.44rem; padding: 1px 5px; }
             .status-badge { font-size: 0.44rem; padding: 1px 5px; }
             h1 { font-size: 1rem; }
+            .tab-title { font-size: 0.7rem; }
+            .tab-subtitle { font-size: 0.5rem; }
         }
 
         @media (max-height: 720px) {
@@ -653,6 +914,10 @@
             .swimlane-title { font-size: 0.52rem; }
             .month-col { padding: 3px 0; }
             .month-name { font-size: 0.48rem; }
+            .tabs-container { margin-bottom: 3px; }
+            .tab-btn { padding: 6px 10px; }
+            .tab-icon { font-size: 0.85rem; }
+            .comparison-box { padding: 6px 12px; gap: 12px; }
         }
 
         @media (max-width: 1500px) {
@@ -670,7 +935,6 @@
             .swimlane-title { display: none; }
         }
 
-        /* Zoom controls via CSS variables - sans casser sticky */
         @media (max-height: 650px), (max-width: 1150px) {
             :root {
                 --sidebar-width: 58px;
@@ -717,53 +981,7 @@
             .period-badge { font-size: 0.4rem; padding: 1px 5px; }
             .legend-bar { display: none; }
             .page-header { margin-bottom: 3px; padding: 3px 5px; }
-        }
-
-        /* Contrôles de zoom interactifs */
-        .zoom-controls {
-            position: fixed;
-            bottom: 12px;
-            right: 12px;
-            display: flex;
-            gap: 6px;
-            z-index: 100;
-            background: rgba(30, 41, 59, 0.95);
-            padding: 6px 10px;
-            border-radius: 8px;
-            border: 1px solid rgba(148, 163, 184, 0.3);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .zoom-btn {
-            background: linear-gradient(145deg, #475569, #334155);
-            border: 1px solid #64748b;
-            color: #fff;
-            width: 28px;
-            height: 28px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
-
-        .zoom-btn:hover {
-            background: linear-gradient(145deg, #60a5fa, #3b82f6);
-            border-color: #93c5fd;
-            transform: scale(1.05);
-        }
-
-        .zoom-level {
-            color: #cbd5e1;
-            font-size: 0.6rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            min-width: 40px;
-            justify-content: center;
+            .comparison-box { display: none; }
         }
     </style>
 </head>
@@ -771,486 +989,832 @@
 
 <div class="container">
 
-    <header class="page-header">
-        <h1>Roadmap Plateforme : équipe renforçée</h1>
-        <div class="badges-container">
-            <div class="period-badge">2026 → Q1 2027</div>
-        </div>
-    </header>
+    <!-- TABS DE NAVIGATION -->
+    <div class="tabs-container">
+        <button class="tab-btn tab-btn-renfort active" onclick="showPage('renfort')">
+            <span class="tab-icon">🚀</span>
+            <div class="tab-info">
+                <span class="tab-title">Équipe renforcée</span>
+                <span class="tab-subtitle">Fin Q1 2027 • Parallélisation</span>
+            </div>
+        </button>
+        <button class="tab-btn tab-btn-sans" onclick="showPage('sans')">
+            <span class="tab-icon">⚠️</span>
+            <div class="tab-info">
+                <span class="tab-title">Sans renfort</span>
+                <span class="tab-subtitle">Fin Q3 2028 • +18 mois</span>
+            </div>
+        </button>
+    </div>
 
-    <div class="legend-bar">
-        <div class="legend-title">Légende :</div>
-        <div class="legend-items">
-            <div class="legend-item">
-                <span class="top5-badge" style="font-size: 0.44rem;">
-                    <span class="top5-badge-icon">🏆</span>
-                    TOP 5
-                </span>
-                <span class="legend-desc">Priorité issue du questionnaire</span>
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         PAGE 1 : ÉQUIPE RENFORCÉE
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <div id="page-renfort" class="page active">
+        
+        <header class="page-header page-header-renfort">
+            <h1 class="h1-renfort"><span class="icon">🚀</span> Roadmap Plateforme : équipe renforçée</h1>
+            <div class="badges-container">
+                <div class="period-badge period-badge-renfort">2026 → Q1 2027</div>
             </div>
-            <div class="legend-item">
-                <span class="status-badge status-active" style="font-size: 0.44rem;">EN COURS</span>
-                <span class="legend-desc">Développement en cours</span>
+        </header>
+
+        <div class="legend-bar">
+            <div class="legend-title">Légende :</div>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <span class="top5-badge" style="font-size: 0.44rem;">
+                        <span class="top5-badge-icon">🏆</span>
+                        TOP 5
+                    </span>
+                    <span class="legend-desc">Priorité issue du questionnaire</span>
+                </div>
+                <div class="legend-item">
+                    <span class="status-badge status-active" style="font-size: 0.44rem;">EN COURS</span>
+                    <span class="legend-desc">Développement en cours</span>
+                </div>
+                <div class="legend-item">
+                    <span class="status-badge status-planned" style="font-size: 0.44rem;">PLANIFIÉ</span>
+                    <span class="legend-desc">Planification issue du questionnaire</span>
+                </div>
+                <div class="legend-item">
+                    <span class="status-badge status-validation" style="font-size: 0.44rem;">STRAT. REQUIS</span>
+                    <span class="legend-desc">En attente validation stratégie Plateforme</span>
+                </div>
             </div>
-            <div class="legend-item">
-                <span class="status-badge status-planned" style="font-size: 0.44rem;">PLANIFIÉ</span>
-                <span class="legend-desc">Planification issue du questionnaire</span>
+        </div>
+
+        <div class="roadmap-scroll-wrapper">
+            <!-- MARKER OVERLAY -->
+            <div class="marker-overlay grid-layout-renfort">
+                <div style="grid-column: 5; position: relative;">
+                    <div class="vertical-marker">
+                        <div class="marker-label">Equipe renforçée</div>
+                    </div>
+                </div>
             </div>
-            <div class="legend-item">
-                <span class="status-badge status-validation" style="font-size: 0.44rem;">STRAT. REQUIS</span>
-                <span class="legend-desc">En attente validation stratégie Plateforme</span>
+
+            <!-- TIMELINE HEADER -->
+            <div class="grid-layout-renfort timeline-header">
+                <div></div> 
+                <div class="month-col"><div class="month-name">Jan</div><div class="month-year">2026</div></div>
+                <div class="month-col"><div class="month-name">Fév</div><div class="month-year">2026</div></div>
+                <div class="month-col"><div class="month-name">Mar</div><div class="month-year">2026</div></div>
+                <div class="month-col"><div class="month-name">Avr</div><div class="month-year">2026</div></div>
+                <div class="month-col"><div class="month-name">Mai</div><div class="month-year">2026</div></div>
+                <div class="month-col"><div class="month-name">Juin</div><div class="month-year">2026</div></div>
+                <div class="month-col"><div class="month-name">Juil</div><div class="month-year">2026</div></div>
+                <div class="month-col"><div class="month-name">Août</div><div class="month-year">2026</div></div>
+                <div class="month-col"><div class="month-name">Sep</div><div class="month-year">2026</div></div>
+                <div class="month-col"><div class="month-name">Oct</div><div class="month-year">2026</div></div>
+                <div class="month-col"><div class="month-name">Nov</div><div class="month-year">2026</div></div>
+                <div class="month-col"><div class="month-name">Déc</div><div class="month-year">2026</div></div>
+                <div class="month-col"><div class="month-name">Jan</div><div class="month-year">2027</div></div>
+                <div class="month-col"><div class="month-name">Fév</div><div class="month-year">2027</div></div>
+                <div class="month-col"><div class="month-name">Mar</div><div class="month-year">2027</div></div>
+            </div>
+
+            <!-- RÉFÉRENTIEL -->
+            <div class="grid-layout-renfort swimlane-row swimlane-referentiel">
+                <div class="swimlane-label">
+                    <div class="swimlane-icon">📚</div>
+                    <div class="swimlane-title">Référentiel</div>
+                </div>
+                <div class="card" style="grid-column: 2 / span 2;">
+                    <div class="card-title">Intégration référentiel</div>
+                    <span class="top5-badge"><span class="top5-badge-icon">🏆</span> TOP 5</span>
+                    <span class="status-badge status-active">EN COURS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Jan - Fév</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ATS -->
+            <div class="grid-layout-renfort swimlane-row swimlane-ats">
+                <div class="swimlane-label">
+                    <div class="swimlane-icon">🗂️</div>
+                    <div class="swimlane-title">ATS</div>
+                </div>
+                <div class="card" style="grid-column: 4 / span 2;">
+                    <div class="card-title">Améliorations ATS</div>
+                    <span class="top5-badge"><span class="top5-badge-icon">🏆</span> TOP 5</span>
+                    <span class="status-badge status-planned">PLANIFIÉ</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Mars - Avril</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IA -->
+            <div class="grid-layout-renfort swimlane-row swimlane-ia">
+                <div class="swimlane-label" style="grid-row: 1 / span 5;">
+                    <div class="swimlane-icon">🤖</div>
+                    <div class="swimlane-title">IA</div>
+                </div>
+                <div class="card" style="grid-column: 5 / span 2; grid-row: 1;">
+                    <div class="card-title">Matching candidatures ↔ besoins</div>
+                    <span class="top5-badge"><span class="top5-badge-icon">🏆</span> TOP 5</span>
+                    <span class="status-badge status-planned">PLANIFIÉ</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Avril - Mai</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 5 / span 3; grid-row: 2;">
+                    <div class="card-title">Assistance qualification</div>
+                    <span class="top5-badge"><span class="top5-badge-icon">🏆</span> TOP 5</span>
+                    <span class="status-badge status-validation">PLANIFIÉ</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Mai - Juin</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 8 / span 2; grid-row: 3;">
+                    <div class="card-title">Génération dossier compétences</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Juil - Août - 31/08</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 10 / span 2; grid-row: 4;">
+                    <div class="card-title">Reverse matching missions</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Sept - Oct</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 12 / span 3; grid-row: 5;">
+                    <div class="card-title">Shortlist dynamique soutenances clients</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Nov - Juil</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PORTAGE -->
+            <div class="grid-layout-renfort swimlane-row swimlane-portage">
+                <div class="swimlane-label">
+                    <div class="swimlane-icon">🧩</div>
+                    <div class="swimlane-title">Portage</div>
+                </div>
+                <div class="card" style="grid-column: 6 / span 2;">
+                    <div class="card-title">Matchboard portage salarial</div>
+                    <span class="top5-badge"><span class="top5-badge-icon">🏆</span> TOP 5</span>
+                    <span class="status-badge status-planned">PLANIFIÉ</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Mai - Juin</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AUTOMATISATION -->
+            <div class="grid-layout-renfort swimlane-row swimlane-auto">
+                <div class="swimlane-label" style="grid-row: 1 / span 3;">
+                    <div class="swimlane-icon">⚡</div>
+                    <div class="swimlane-title">Automatisation</div>
+                </div>
+                <div class="card" style="grid-column: 7 / span 1; grid-row: 1;">
+                    <div class="card-title">Auto listes diffusion</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Juin</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 8 / span 1; grid-row: 2;">
+                    <div class="card-title">Sollicitations partenaires AO</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Juillet</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 8 / span 1; grid-row: 3;">
+                    <div class="card-title">Intégration CV partenaires</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Juil - Août</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ECOSYSTÈME -->
+            <div class="grid-layout-renfort swimlane-row swimlane-eco">
+                <div class="swimlane-label" style="grid-row: 1 / span 4;">
+                    <div class="swimlane-icon">🌐</div>
+                    <div class="swimlane-title">Ecosystème</div>
+                </div>
+                <div class="card" style="grid-column: 9 / span 2; grid-row: 1;">
+                    <div class="card-title">Jobboard Portail Unifié</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Août - Sep</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 11 / span 1; grid-row: 2;">
+                    <div class="card-title">Passerelle ↔ Portail Unifiée</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Oct</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 11 / span 1; grid-row: 3;">
+                    <div class="card-title">Talenteed : certifications & skills</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Oct</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 12 / span 2; grid-row: 4;">
+                    <div class="card-title">Sourceuse HP</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Nov - Déc</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PARCOURS CLIENT -->
+            <div class="grid-layout-renfort swimlane-row swimlane-parcours">
+                <div class="swimlane-label" style="grid-row: 1 / span 3;">
+                    <div class="swimlane-icon">👤</div>
+                    <div class="swimlane-title">Parcours client</div>
+                </div>
+                <div class="card" style="grid-column: 12 / span 1; grid-row: 1;">
+                    <div class="card-title">Conversion besoin → opportunité SF</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Nov</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 13 / span 2; grid-row: 2;">
+                    <div class="card-title">Priorisation talents client</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Déc - Jan</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 13 / span 1; grid-row: 3;">
+                    <div class="card-title">Intégration VMS</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Déc</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONFORMITÉ -->
+            <div class="grid-layout-renfort swimlane-row swimlane-conformite">
+                <div class="swimlane-label">
+                    <div class="swimlane-icon">✅</div>
+                    <div class="swimlane-title">Conformité</div>
+                </div>
+                <div class="card" style="grid-column: 14 / span 1;">
+                    <div class="card-title">Déclaration RQTH</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Jan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TECH -->
+            <div class="grid-layout-renfort swimlane-row swimlane-tech">
+                <div class="swimlane-label" style="grid-row: 1 / span 4;">
+                    <div class="swimlane-icon">🔧</div>
+                    <div class="swimlane-title">Tech</div>
+                </div>
+                <div class="card" style="grid-column: 2 / span 2; grid-row: 1;">
+                    <div class="card-title">Migration Nuxt 3</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Nov - Fév</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 3 / span 2; grid-row: 2;">
+                    <div class="card-title">Intégration IA groupe</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Fév</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 11 / span 3; grid-row: 3;">
+                    <div class="card-title">Gestion des mails</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Oct - Déc</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 14 / span 2; grid-row: 4;">
+                    <div class="card-title">Amazon EKS</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Jan - Mar 27</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTIONS HORS TIMELINE -->
+            <div class="sections-hors-timeline">
+                <div class="section-box section-arbitrage">
+                    <div class="section-header">
+                        <span class="section-icon">⚖️</span>
+                        <span class="section-title">Arbitrage requis</span>
+                    </div>
+                    <div class="section-cards">
+                        <div class="section-card">
+                            <div class="section-card-title">Moteur de recherche interne/externe</div>
+                            <span class="section-badge badge-arbitrage">⚠️ Décision requise</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-box section-aplacer">
+                    <div class="section-header">
+                        <span class="section-icon">📋</span>
+                        <span class="section-title">À placer</span>
+                    </div>
+                    <div class="section-cards">
+                        <div class="section-card">
+                            <div class="section-card-title">Accessibilité</div>
+                            <span class="section-badge badge-estime">📊 Audit à faire</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="roadmap-scroll-wrapper">
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         PAGE 2 : SANS RENFORT - Contenu simplifié pour la démo
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <div id="page-sans" class="page">
+        
+        <header class="page-header page-header-sans">
+            <h1 class="h1-sans"><span class="icon">⚠️</span> Roadmap Plateforme : SANS renfort d'équipe</h1>
+            <div class="badges-container">
+                <div class="period-badge period-badge-sans">2026 → Q3 2028</div>
+                <div class="warning-badge">⚠️ SÉQUENCE UNIQUE - PAS DE PARALLÉLISATION</div>
+            </div>
+        </header>
 
-        <!-- MARKER OVERLAY -->
-        <div class="marker-overlay grid-layout">
-            <!-- Marker équipe renforcée - Avril 2026 -->
-            <div style="grid-column: 5; position: relative;">
-                <div class="vertical-marker">
-                    <div class="marker-label">Equipe renforçée</div>
+        <div class="comparison-box">
+            <div class="comparison-item">
+                <span class="comparison-label">Avec renfort :</span>
+                <span class="comparison-value old">Q1 2027</span>
+            </div>
+            <span class="comparison-arrow">→</span>
+            <div class="comparison-item">
+                <span class="comparison-label">Sans renfort :</span>
+                <span class="comparison-value new">Q3 2028</span>
+            </div>
+            <div class="comparison-delta">+18 mois</div>
+        </div>
+
+        <div class="legend-bar">
+            <div class="legend-title">Légende :</div>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <span class="team-badge">👥 ÉQUIPE ACTUELLE</span>
+                    <span class="legend-desc">1 Lead Dev + 1 Dev Back + 1 PO</span>
                 </div>
-            </div>
-
-        </div>
-
-        <!-- TIMELINE HEADER : 12 mois 2026 + 3 mois 2027 -->
-        <!-- Col 2=Jan26, 3=Fév26, 4=Mar26, 5=Avr26, 6=Mai26, 7=Juin26, 8=Juil26, 9=Août26, 10=Sep26, 11=Oct26, 12=Nov26, 13=Déc26, 14=Jan27, 15=Fév27, 16=Mar27 -->
-        <div class="grid-layout timeline-header">
-            <div></div> 
-            <div class="month-col"><div class="month-name">Jan</div><div class="month-year">2026</div></div>
-            <div class="month-col"><div class="month-name">Fév</div><div class="month-year">2026</div></div>
-            <div class="month-col"><div class="month-name">Mar</div><div class="month-year">2026</div></div>
-            <div class="month-col"><div class="month-name">Avr</div><div class="month-year">2026</div></div>
-            <div class="month-col"><div class="month-name">Mai</div><div class="month-year">2026</div></div>
-            <div class="month-col"><div class="month-name">Juin</div><div class="month-year">2026</div></div>
-            <div class="month-col"><div class="month-name">Juil</div><div class="month-year">2026</div></div>
-            <div class="month-col"><div class="month-name">Août</div><div class="month-year">2026</div></div>
-            <div class="month-col"><div class="month-name">Sep</div><div class="month-year">2026</div></div>
-            <div class="month-col"><div class="month-name">Oct</div><div class="month-year">2026</div></div>
-            <div class="month-col"><div class="month-name">Nov</div><div class="month-year">2026</div></div>
-            <div class="month-col"><div class="month-name">Déc</div><div class="month-year">2026</div></div>
-            <div class="month-col"><div class="month-name">Jan</div><div class="month-year">2027</div></div>
-            <div class="month-col"><div class="month-name">Fév</div><div class="month-year">2027</div></div>
-            <div class="month-col"><div class="month-name">Mar</div><div class="month-year">2027</div></div>
-        </div>
-
-        <!-- ═══════════════════════════════════════════════════════════════════
-             RÉFÉRENTIEL : Jan-Fév (colonnes 2-3)
-             ═══════════════════════════════════════════════════════════════════ -->
-        <div class="grid-layout swimlane-row swimlane-referentiel">
-            <div class="swimlane-label">
-                <div class="swimlane-icon">📚</div>
-                <div class="swimlane-title">Référentiel</div>
-            </div>
-            <div class="card" style="grid-column: 2 / span 2;">
-                <div class="card-title">Intégration référentiel</div>
-                <span class="top5-badge">
-                    <span class="top5-badge-icon">🏆</span>
-                    TOP 5
-                </span>
-                <span class="status-badge status-active">EN COURS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/01 - 28/02</span>
-                    </div>
+                <div class="legend-item" style="border-left: 1px solid #64748b; padding-left: 12px; margin-left: 4px;">
+                    <span class="top5-badge" style="font-size: 0.44rem;">
+                        <span class="top5-badge-icon">🏆</span>
+                        TOP 5
+                    </span>
+                    <span class="legend-desc">Priorité questionnaire</span>
                 </div>
             </div>
         </div>
 
-        <!-- ═══════════════════════════════════════════════════════════════════
-             ATS : Mars-Avril (colonnes 4-5)
-             ═══════════════════════════════════════════════════════════════════ -->
-        <div class="grid-layout swimlane-row swimlane-ats">
-            <div class="swimlane-label">
-                <div class="swimlane-icon">🗂️</div>
-                <div class="swimlane-title">ATS</div>
+        <div class="roadmap-scroll-wrapper">
+            <!-- TIMELINE HEADER - 32 mois -->
+            <div class="grid-layout-sans timeline-header">
+                <div></div>
+                <div class="month-col"><div class="month-name">Jan</div><div class="month-year">26</div></div>
+                <div class="month-col"><div class="month-name">Fév</div><div class="month-year">26</div></div>
+                <div class="month-col"><div class="month-name">Mar</div><div class="month-year">26</div></div>
+                <div class="month-col"><div class="month-name">Avr</div><div class="month-year">26</div></div>
+                <div class="month-col"><div class="month-name">Mai</div><div class="month-year">26</div></div>
+                <div class="month-col"><div class="month-name">Juin</div><div class="month-year">26</div></div>
+                <div class="month-col"><div class="month-name">Juil</div><div class="month-year">26</div></div>
+                <div class="month-col"><div class="month-name">Août</div><div class="month-year">26</div></div>
+                <div class="month-col"><div class="month-name">Sep</div><div class="month-year">26</div></div>
+                <div class="month-col"><div class="month-name">Oct</div><div class="month-year">26</div></div>
+                <div class="month-col"><div class="month-name">Nov</div><div class="month-year">26</div></div>
+                <div class="month-col"><div class="month-name">Déc</div><div class="month-year">26</div></div>
+                <div class="month-col"><div class="month-name">Jan</div><div class="month-year">27</div></div>
+                <div class="month-col"><div class="month-name">Fév</div><div class="month-year">27</div></div>
+                <div class="month-col"><div class="month-name">Mar</div><div class="month-year">27</div></div>
+                <div class="month-col"><div class="month-name">Avr</div><div class="month-year">27</div></div>
+                <div class="month-col"><div class="month-name">Mai</div><div class="month-year">27</div></div>
+                <div class="month-col"><div class="month-name">Juin</div><div class="month-year">27</div></div>
+                <div class="month-col"><div class="month-name">Juil</div><div class="month-year">27</div></div>
+                <div class="month-col"><div class="month-name">Août</div><div class="month-year">27</div></div>
+                <div class="month-col"><div class="month-name">Sep</div><div class="month-year">27</div></div>
+                <div class="month-col"><div class="month-name">Oct</div><div class="month-year">27</div></div>
+                <div class="month-col"><div class="month-name">Nov</div><div class="month-year">27</div></div>
+                <div class="month-col"><div class="month-name">Déc</div><div class="month-year">27</div></div>
+                <div class="month-col"><div class="month-name">Jan</div><div class="month-year">28</div></div>
+                <div class="month-col"><div class="month-name">Fév</div><div class="month-year">28</div></div>
+                <div class="month-col"><div class="month-name">Mar</div><div class="month-year">28</div></div>
+                <div class="month-col"><div class="month-name">Avr</div><div class="month-year">28</div></div>
+                <div class="month-col"><div class="month-name">Mai</div><div class="month-year">28</div></div>
+                <div class="month-col"><div class="month-name">Juin</div><div class="month-year">28</div></div>
+                <div class="month-col"><div class="month-name">Juil</div><div class="month-year">28</div></div>
+                <div class="month-col"><div class="month-name">Août</div><div class="month-year">28</div></div>
             </div>
-            <div class="card" style="grid-column: 4 / span 2;">
-                <div class="card-title">Améliorations ATS</div>
-                <span class="top5-badge">
-                    <span class="top5-badge-icon">🏆</span>
-                    TOP 5
-                </span>
-                <span class="status-badge status-planned">PLANIFIÉ</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/03 - 30/04</span>
+
+            <!-- RÉFÉRENTIEL -->
+            <div class="grid-layout-sans swimlane-row swimlane-referentiel">
+                <div class="swimlane-label">
+                    <div class="swimlane-icon">📚</div>
+                    <div class="swimlane-title">Référentiel</div>
+                </div>
+                <div class="card" style="grid-column: 2 / span 2;">
+                    <div class="card-title">Intégration référentiel</div>
+                    <span class="top5-badge"><span class="top5-badge-icon">🏆</span> TOP 5</span>
+                    <span class="status-badge status-active">EN COURS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Jan - Fév 26</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ATS -->
+            <div class="grid-layout-sans swimlane-row swimlane-ats">
+                <div class="swimlane-label">
+                    <div class="swimlane-icon">🗂️</div>
+                    <div class="swimlane-title">ATS</div>
+                </div>
+                <div class="card" style="grid-column: 4 / span 3;">
+                    <div class="card-title">Améliorations ATS</div>
+                    <span class="top5-badge"><span class="top5-badge-icon">🏆</span> TOP 5</span>
+                    <span class="status-badge status-planned">PLANIFIÉ</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Mar - Mai 26</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PORTAGE -->
+            <div class="grid-layout-sans swimlane-row swimlane-portage">
+                <div class="swimlane-label">
+                    <div class="swimlane-icon">🧩</div>
+                    <div class="swimlane-title">Portage</div>
+                </div>
+                <div class="card" style="grid-column: 7 / span 2;">
+                    <div class="card-title">Matchboard portage salarial</div>
+                    <span class="top5-badge"><span class="top5-badge-icon">🏆</span> TOP 5</span>
+                    <span class="status-badge status-planned">PLANIFIÉ</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Juin - Juil 26</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IA - Séquentiel sur plusieurs mois -->
+            <div class="grid-layout-sans swimlane-row swimlane-ia">
+                <div class="swimlane-label" style="grid-row: 1 / span 5;">
+                    <div class="swimlane-icon">🤖</div>
+                    <div class="swimlane-title">IA</div>
+                </div>
+                <div class="card" style="grid-column: 9 / span 2; grid-row: 1;">
+                    <div class="card-title">Matching candidatures</div>
+                    <span class="top5-badge"><span class="top5-badge-icon">🏆</span> TOP 5</span>
+                    <span class="status-badge status-planned">PLANIFIÉ</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Août - Sep 26</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 11 / span 3; grid-row: 2;">
+                    <div class="card-title">Assistance qualification</div>
+                    <span class="top5-badge"><span class="top5-badge-icon">🏆</span> TOP 5</span>
+                    <span class="status-badge status-validation">PLANIFIÉ</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Oct - Déc 26</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 14 / span 2; grid-row: 3;">
+                    <div class="card-title">Génération dossier</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Jan - Fév 27</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 16 / span 2; grid-row: 4;">
+                    <div class="card-title">Reverse matching</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Mar - Avr 27</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 18 / span 3; grid-row: 5;">
+                    <div class="card-title">Shortlist dynamique</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Mai - Juil 27</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AUTOMATISATION -->
+            <div class="grid-layout-sans swimlane-row swimlane-auto">
+                <div class="swimlane-label" style="grid-row: 1 / span 3;">
+                    <div class="swimlane-icon">⚡</div>
+                    <div class="swimlane-title">Automatisation</div>
+                </div>
+                <div class="card" style="grid-column: 21 / span 1; grid-row: 1;">
+                    <div class="card-title">Auto listes</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Août 27</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 22 / span 1; grid-row: 2;">
+                    <div class="card-title">Sollicitations</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Sep 27</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 23 / span 1; grid-row: 3;">
+                    <div class="card-title">Intégration CV</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Oct 27</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ECOSYSTÈME -->
+            <div class="grid-layout-sans swimlane-row swimlane-eco">
+                <div class="swimlane-label" style="grid-row: 1 / span 4;">
+                    <div class="swimlane-icon">🌐</div>
+                    <div class="swimlane-title">Ecosystème</div>
+                </div>
+                <div class="card" style="grid-column: 24 / span 2; grid-row: 1;">
+                    <div class="card-title">Jobboard</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Nov - Déc 27</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 26 / span 1; grid-row: 2;">
+                    <div class="card-title">Passerelle</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Jan 28</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 27 / span 1; grid-row: 3;">
+                    <div class="card-title">Talenteed</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Fév 28</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 28 / span 2; grid-row: 4;">
+                    <div class="card-title">Sourceuse HP</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Mar - Avr 28</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PARCOURS CLIENT -->
+            <div class="grid-layout-sans swimlane-row swimlane-parcours">
+                <div class="swimlane-label" style="grid-row: 1 / span 3;">
+                    <div class="swimlane-icon">👤</div>
+                    <div class="swimlane-title">Parcours</div>
+                </div>
+                <div class="card" style="grid-column: 30 / span 1; grid-row: 1;">
+                    <div class="card-title">Conversion</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Mai 28</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 31 / span 2; grid-row: 2;">
+                    <div class="card-title">Priorisation</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Juin - Juil 28</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 33 / span 1; grid-row: 3;">
+                    <div class="card-title">VMS</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Août 28</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TECH -->
+            <div class="grid-layout-sans swimlane-row swimlane-tech">
+                <div class="swimlane-label" style="grid-row: 1 / span 4;">
+                    <div class="swimlane-icon">🔧</div>
+                    <div class="swimlane-title">Tech</div>
+                </div>
+                <div class="card" style="grid-column: 2 / span 2; grid-row: 1;">
+                    <div class="card-title">Migration Nuxt 3</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Jan - Fév 26</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 3 / span 2; grid-row: 2;">
+                    <div class="card-title">IA groupe</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Fév - Mar 26</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 11 / span 3; grid-row: 3;">
+                    <div class="card-title">Gestion mails</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Oct - Déc 26</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 14 / span 3; grid-row: 4;">
+                    <div class="card-title">Amazon EKS</div>
+                    <span class="status-badge status-validation">STRAT. REQUIS</span>
+                    <div class="card-meta">
+                        <div class="card-meta-item">
+                            <span class="card-meta-icon">📅</span>
+                            <span class="card-meta-text">Jan - Mar 27</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTIONS HORS TIMELINE -->
+            <div class="sections-hors-timeline">
+                <div class="section-box section-arbitrage">
+                    <div class="section-header">
+                        <span class="section-icon">⚖️</span>
+                        <span class="section-title">Arbitrage requis</span>
+                    </div>
+                    <div class="section-cards">
+                        <div class="section-card">
+                            <div class="section-card-title">Moteur de recherche</div>
+                            <span class="section-badge badge-arbitrage">⚠️ Décision requise</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-box section-aplacer">
+                    <div class="section-header">
+                        <span class="section-icon">📋</span>
+                        <span class="section-title">Hors timeline</span>
+                    </div>
+                    <div class="section-cards">
+                        <div class="section-card">
+                            <div class="section-card-title">Accessibilité</div>
+                            <span class="section-badge badge-estime">📊 Audit</span>
+                        </div>
+                        <div class="section-card">
+                            <div class="section-card-title">RQTH</div>
+                            <span class="section-badge badge-estime">📅 Post Août 28</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- ═══════════════════════════════════════════════════════════════════
-             IA - Démarrage Avril
-             ═══════════════════════════════════════════════════════════════════ -->
-        <div class="grid-layout swimlane-row swimlane-ia">
-            <div class="swimlane-label" style="grid-row: 1 / span 5;">
-                <div class="swimlane-icon">🤖</div>
-                <div class="swimlane-title">IA</div>
-            </div>
-            
-            <!-- Matching : Avr-Mai (colonnes 5-6) -->
-            <div class="card" style="grid-column: 5 / span 2; grid-row: 1;">
-                <div class="card-title">Matching candidatures ↔ besoins</div>
-                <span class="top5-badge">
-                    <span class="top5-badge-icon">🏆</span>
-                    TOP 5
-                </span>
-                <span class="status-badge status-planned">PLANIFIÉ</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/04 - 31/05</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Assistance qualification : Avr-Juin (colonnes 5-7) -->
-            <div class="card" style="grid-column: 5 / span 3; grid-row: 2;">
-                <div class="card-title">Assistance qualification</div>
-                <span class="top5-badge">
-                    <span class="top5-badge-icon">🏆</span>
-                    TOP 5
-                </span>
-                <span class="status-badge status-validation">PLANIFIÉ</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/04 - 30/06</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Génération dossier : Juil-Août (colonnes 8-9) -->
-            <div class="card" style="grid-column: 8 / span 2; grid-row: 3;">
-                <div class="card-title">Génération dossier compétences</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/07 - 31/08</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Reverse matching : Sept-Oct (colonnes 10-11) -->
-            <div class="card" style="grid-column: 10 / span 2; grid-row: 4;">
-                <div class="card-title">Reverse matching missions</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/09 - 31/10</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Shortlist : Nov-Déc-Jan27 (colonnes 12-14) -->
-            <div class="card" style="grid-column: 12 / span 3; grid-row: 5;">
-                <div class="card-title">Shortlist dynamique soutenances clients</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/11 - 31/01/27</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ═══════════════════════════════════════════════════════════════════
-             PORTAGE : Mai-Juin (colonnes 6-7)
-             ═══════════════════════════════════════════════════════════════════ -->
-        <div class="grid-layout swimlane-row swimlane-portage">
-            <div class="swimlane-label">
-                <div class="swimlane-icon">🧩</div>
-                <div class="swimlane-title">Portage</div>
-            </div>
-            <div class="card" style="grid-column: 6 / span 2;">
-                <div class="card-title">Matchboard portage salarial</div>
-                <span class="top5-badge">
-                    <span class="top5-badge-icon">🏆</span>
-                    TOP 5
-                </span>
-                <span class="status-badge status-planned">PLANIFIÉ</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/05 - 30/06</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ═══════════════════════════════════════════════════════════════════
-             AUTOMATISATION - Avancé de 3 mois
-             ═══════════════════════════════════════════════════════════════════ -->
-        <div class="grid-layout swimlane-row swimlane-auto">
-            <div class="swimlane-label" style="grid-row: 1 / span 3;">
-                <div class="swimlane-icon">⚡</div>
-                <div class="swimlane-title">Automatisation</div>
-            </div>
-            
-            <!-- Auto listes : Juin (colonne 7) -->
-            <div class="card" style="grid-column: 7 / span 1; grid-row: 1;">
-                <div class="card-title">Auto listes diffusion</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/06 - 30/06</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Sollicitations : Juil (colonne 8) -->
-            <div class="card" style="grid-column: 8 / span 1; grid-row: 2;">
-                <div class="card-title">Sollicitations partenaires AO</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/07 - 31/07</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Intégration CV : Juil-Août (colonnes 8-9) -->
-            <div class="card" style="grid-column: 8 / span 1; grid-row: 3;">
-                <div class="card-title">Intégration CV partenaires</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">15/07 - 15/08</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ═══════════════════════════════════════════════════════════════════
-             ECOSYSTÈME - Avancé de 3 mois
-             ═══════════════════════════════════════════════════════════════════ -->
-        <div class="grid-layout swimlane-row swimlane-eco">
-            <div class="swimlane-label" style="grid-row: 1 / span 4;">
-                <div class="swimlane-icon">🌐</div>
-                <div class="swimlane-title">Ecosystème</div>
-            </div>
-            
-            <!-- Jobboard : Août-Sept (colonnes 9-10) -->
-            <div class="card" style="grid-column: 9 / span 2; grid-row: 1;">
-                <div class="card-title">Jobboard Portail Unifié</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/08 - 30/09</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Passerelle : Oct (colonne 11) -->
-            <div class="card" style="grid-column: 11 / span 1; grid-row: 2;">
-                <div class="card-title">Passerelle ↔ Portail Unifiée</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/10 - 31/10</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Talenteed : Oct (colonne 11) -->
-            <div class="card" style="grid-column: 11 / span 1; grid-row: 3;">
-                <div class="card-title">Talenteed : certifications & skills</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/10 - 31/10</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Sourceuse HP : Nov-Déc (colonnes 12-13) -->
-            <div class="card" style="grid-column: 12 / span 2; grid-row: 4;">
-                <div class="card-title">Sourceuse HP</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/11 - 31/12</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ═══════════════════════════════════════════════════════════════════
-             PARCOURS CLIENT - Avancé de 3 mois
-             ═══════════════════════════════════════════════════════════════════ -->
-        <div class="grid-layout swimlane-row swimlane-parcours">
-            <div class="swimlane-label" style="grid-row: 1 / span 3;">
-                <div class="swimlane-icon">👤</div>
-                <div class="swimlane-title">Parcours client</div>
-            </div>
-            
-            <!-- Conversion : Nov (colonne 12) -->
-            <div class="card" style="grid-column: 12 / span 1; grid-row: 1;">
-                <div class="card-title">Conversion besoin → opportunité SF</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/11 - 30/11</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Priorisation : Déc-Jan27 (colonnes 13-14) -->
-            <div class="card" style="grid-column: 13 / span 2; grid-row: 2;">
-                <div class="card-title">Priorisation talents client</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/12 - 31/01/27</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- VMS : Déc (colonne 13) -->
-            <div class="card" style="grid-column: 13 / span 1; grid-row: 3;">
-                <div class="card-title">Intégration VMS</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/12 - 31/12</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ═══════════════════════════════════════════════════════════════════
-             CONFORMITÉ - Avancé de 3 mois
-             ═══════════════════════════════════════════════════════════════════ -->
-        <div class="grid-layout swimlane-row swimlane-conformite">
-            <div class="swimlane-label" style="grid-row: 1 / span 1;">
-                <div class="swimlane-icon">✅</div>
-                <div class="swimlane-title">Conformité</div>
-            </div>
-            
-            <!-- RQTH : Jan27 (colonne 14) -->
-            <div class="card" style="grid-column: 14 / span 1; grid-row: 1;">
-                <div class="card-title">Déclaration RQTH</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/01/27 - 31/01/27</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ═══════════════════════════════════════════════════════════════════
-             TECH - Décalé
-             ═══════════════════════════════════════════════════════════════════ -->
-        <div class="grid-layout swimlane-row swimlane-tech">
-            <div class="swimlane-label" style="grid-row: 1 / span 4;">
-                <div class="swimlane-icon">🔧</div>
-                <div class="swimlane-title">Tech</div>
-            </div>
-            
-            <!-- Migration Nuxt 3 : Sept25 - Mai26 (colonnes 2-6) -->
-            <div class="card" style="grid-column: 2 / span 2; grid-row: 1;">
-                <div class="card-title">Migration Nuxt 3</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Nov - Fév</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Intégration IA groupe : Juin-Juil (colonnes 7-8) -->
-            <div class="card" style="grid-column: 3 / span 2; grid-row: 2;">
-                <div class="card-title">Intégration IA groupe</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Fév</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Gestion des mails : Oct-Déc (colonnes 11-13) -->
-            <div class="card" style="grid-column: 11 / span 3; grid-row: 3;">
-                <div class="card-title">Gestion des mails</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Oct - Déc 26</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Amazon EKS : Jan27-Mar27 (colonnes 14-16) -->
-            <div class="card" style="grid-column: 14 / span 3; grid-row: 4;">
-                <div class="card-title">Amazon EKS</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">Jan - Mar 27</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTIONS HORS TIMELINE -->
-        <div class="sections-hors-timeline">
-            
-            <!-- Section Arbitrage -->
-            <div class="section-box section-arbitrage">
-                <div class="section-header">
-                    <span class="section-icon">⚖️</span>
-                    <span class="section-title">Arbitrage requis</span>
-                </div>
-                <div class="section-cards">
-                    <div class="section-card">
-                        <div class="section-card-title">Moteur de recherche interne/externe</div>
-                        <span class="section-badge badge-arbitrage">⚠️ Décision requise</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Section À placer -->
-            <div class="section-box section-aplacer">
-                <div class="section-header">
-                    <span class="section-icon">📋</span>
-                    <span class="section-title">À placer</span>
-                </div>
-                <div class="section-cards">
-                    <div class="section-card">
-                        <div class="section-card-title">Accessibilité</div>
-                        <span class="section-badge badge-estime">📊 Audit à faire</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
     </div>
+
 </div>
 
 <!-- Contrôles de zoom -->
@@ -1262,6 +1826,35 @@
 </div>
 
 <script>
+    // Navigation entre les pages
+    function showPage(page) {
+        // Masquer toutes les pages
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+        
+        // Afficher la page sélectionnée
+        document.getElementById('page-' + page).classList.add('active');
+        document.querySelector('.tab-btn-' + page).classList.add('active');
+        
+        // Mettre à jour l'URL sans recharger
+        history.pushState({page: page}, '', '#' + page);
+    }
+    
+    // Gestion du bouton retour du navigateur
+    window.addEventListener('popstate', function(e) {
+        const page = e.state?.page || 'renfort';
+        showPage(page);
+    });
+    
+    // Charger la page depuis l'URL au démarrage
+    window.addEventListener('load', function() {
+        const hash = window.location.hash.replace('#', '');
+        if (hash === 'sans') {
+            showPage('sans');
+        }
+    });
+
+    // Zoom
     let currentZoom = 100;
     const minZoom = 50;
     const maxZoom = 150;
@@ -1270,7 +1863,6 @@
     const root = document.documentElement;
     const zoomLevelDisplay = document.getElementById('zoomLevel');
     
-    // Valeurs de base
     const baseValues = {
         sidebarWidth: 82,
         colMin: 65,
@@ -1316,7 +1908,6 @@
         applyZoom(currentZoom);
     }
     
-    // Zoom avec Ctrl + molette
     document.addEventListener('wheel', function(e) {
         if (e.ctrlKey) {
             e.preventDefault();
@@ -1328,7 +1919,6 @@
         }
     }, { passive: false });
     
-    // Raccourcis clavier
     document.addEventListener('keydown', function(e) {
         if (e.ctrlKey && (e.key === '+' || e.key === '=')) {
             e.preventDefault();
