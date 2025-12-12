@@ -172,13 +172,13 @@
             border-radius: 3px;
         }
 
-        /* GRILLE 16 COLONNES : 12 mois 2026 + 4 mois 2027 */
+        /* GRILLE 15 COLONNES : 12 mois 2026 + 3 mois 2027 */
         .grid-layout {
             display: grid;
-            grid-template-columns: var(--sidebar-width) repeat(16, minmax(var(--col-min), 1fr));
+            grid-template-columns: var(--sidebar-width) repeat(15, minmax(var(--col-min), 1fr));
             gap: var(--gap);
             align-items: stretch;
-            min-width: calc(var(--sidebar-width) + (16 * var(--col-min)) + (17 * var(--gap)));
+            min-width: calc(var(--sidebar-width) + (15 * var(--col-min)) + (16 * var(--gap)));
         }
 
         .swimlane-label, 
@@ -687,8 +687,8 @@
 
         <!-- MARKER OVERLAY -->
         <div class="marker-overlay grid-layout">
-            <!-- Marker équipe renforcée - Maintenant en Mai (après ATS) -->
-            <div style="grid-column: 6; position: relative;">
+            <!-- Marker équipe renforcée - Avril 2026 -->
+            <div style="grid-column: 5; position: relative;">
                 <div class="vertical-marker">
                     <div class="marker-label">Equipe renforçée</div>
                 </div>
@@ -696,8 +696,8 @@
 
         </div>
 
-        <!-- TIMELINE HEADER : 12 mois 2026 + 4 mois 2027 -->
-        <!-- Col 2=Jan26, 3=Fév26, 4=Mar26, 5=Avr26, 6=Mai26, 7=Juin26, 8=Juil26, 9=Août26, 10=Sep26, 11=Oct26, 12=Nov26, 13=Déc26, 14=Jan27, 15=Fév27, 16=Mar27, 17=Avr27 -->
+        <!-- TIMELINE HEADER : 12 mois 2026 + 3 mois 2027 -->
+        <!-- Col 2=Jan26, 3=Fév26, 4=Mar26, 5=Avr26, 6=Mai26, 7=Juin26, 8=Juil26, 9=Août26, 10=Sep26, 11=Oct26, 12=Nov26, 13=Déc26, 14=Jan27, 15=Fév27, 16=Mar27 -->
         <div class="grid-layout timeline-header">
             <div></div> 
             <div class="month-col"><div class="month-name">Jan</div><div class="month-year">2026</div></div>
@@ -715,7 +715,6 @@
             <div class="month-col"><div class="month-name">Jan</div><div class="month-year">2027</div></div>
             <div class="month-col"><div class="month-name">Fév</div><div class="month-year">2027</div></div>
             <div class="month-col"><div class="month-name">Mar</div><div class="month-year">2027</div></div>
-            <div class="month-col"><div class="month-name">Avr</div><div class="month-year">2027</div></div>
         </div>
 
         <!-- ═══════════════════════════════════════════════════════════════════
@@ -767,6 +766,84 @@
         </div>
 
         <!-- ═══════════════════════════════════════════════════════════════════
+             IA - Démarrage Avril
+             ═══════════════════════════════════════════════════════════════════ -->
+        <div class="grid-layout swimlane-row swimlane-ia">
+            <div class="swimlane-label" style="grid-row: 1 / span 5;">
+                <div class="swimlane-icon">🤖</div>
+                <div class="swimlane-title">IA</div>
+            </div>
+            
+            <!-- Matching : Avr-Mai (colonnes 5-6) -->
+            <div class="card" style="grid-column: 5 / span 2; grid-row: 1;">
+                <div class="card-title">Matching candidatures ↔ besoins</div>
+                <span class="top5-badge">
+                    <span class="top5-badge-icon">🏆</span>
+                    TOP 5
+                </span>
+                <span class="status-badge status-planned">PLANIFIÉ</span>
+                <div class="card-meta">
+                    <div class="card-meta-item">
+                        <span class="card-meta-icon">📅</span>
+                        <span class="card-meta-text">01/04 - 31/05</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Assistance qualification : Avr-Juin (colonnes 5-7) -->
+            <div class="card" style="grid-column: 5 / span 3; grid-row: 2;">
+                <div class="card-title">Assistance qualification</div>
+                <span class="top5-badge">
+                    <span class="top5-badge-icon">🏆</span>
+                    TOP 5
+                </span>
+                <span class="status-badge status-validation">PLANIFIÉ</span>
+                <div class="card-meta">
+                    <div class="card-meta-item">
+                        <span class="card-meta-icon">📅</span>
+                        <span class="card-meta-text">01/04 - 30/06</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Génération dossier : Juil-Août (colonnes 8-9) -->
+            <div class="card" style="grid-column: 8 / span 2; grid-row: 3;">
+                <div class="card-title">Génération dossier compétences</div>
+                <span class="status-badge status-validation">STRAT. REQUIS</span>
+                <div class="card-meta">
+                    <div class="card-meta-item">
+                        <span class="card-meta-icon">📅</span>
+                        <span class="card-meta-text">01/07 - 31/08</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reverse matching : Sept-Oct (colonnes 10-11) -->
+            <div class="card" style="grid-column: 10 / span 2; grid-row: 4;">
+                <div class="card-title">Reverse matching missions</div>
+                <span class="status-badge status-validation">STRAT. REQUIS</span>
+                <div class="card-meta">
+                    <div class="card-meta-item">
+                        <span class="card-meta-icon">📅</span>
+                        <span class="card-meta-text">01/09 - 31/10</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Shortlist : Nov-Déc-Jan27 (colonnes 12-14) -->
+            <div class="card" style="grid-column: 12 / span 3; grid-row: 5;">
+                <div class="card-title">Shortlist dynamique soutenances clients</div>
+                <span class="status-badge status-validation">STRAT. REQUIS</span>
+                <div class="card-meta">
+                    <div class="card-meta-item">
+                        <span class="card-meta-icon">📅</span>
+                        <span class="card-meta-text">01/11 - 31/01/27</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════════════════
              PORTAGE : Mai-Juin (colonnes 6-7)
              ═══════════════════════════════════════════════════════════════════ -->
         <div class="grid-layout swimlane-row swimlane-portage">
@@ -791,85 +868,7 @@
         </div>
 
         <!-- ═══════════════════════════════════════════════════════════════════
-             IA - Tout décalé
-             ═══════════════════════════════════════════════════════════════════ -->
-        <div class="grid-layout swimlane-row swimlane-ia">
-            <div class="swimlane-label" style="grid-row: 1 / span 5;">
-                <div class="swimlane-icon">🤖</div>
-                <div class="swimlane-title">IA</div>
-            </div>
-            
-            <!-- Matching : Juil-Août (colonnes 8-9) -->
-            <div class="card" style="grid-column: 8 / span 2; grid-row: 1;">
-                <div class="card-title">Matching candidatures ↔ besoins</div>
-                <span class="top5-badge">
-                    <span class="top5-badge-icon">🏆</span>
-                    TOP 5
-                </span>
-                <span class="status-badge status-planned">PLANIFIÉ</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/07 - 31/08</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Assistance qualification : Juil-Sept (colonnes 8-10) -->
-            <div class="card" style="grid-column: 8 / span 3; grid-row: 2;">
-                <div class="card-title">Assistance qualification</div>
-                <span class="top5-badge">
-                    <span class="top5-badge-icon">🏆</span>
-                    TOP 5
-                </span>
-                <span class="status-badge status-validation">PLANIFIÉ</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/07 - 30/09</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Génération dossier : Oct-Nov (colonnes 11-12) -->
-            <div class="card" style="grid-column: 11 / span 2; grid-row: 3;">
-                <div class="card-title">Génération dossier compétences</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/10 - 30/11</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Reverse matching : Déc-Jan27 (colonnes 13-14) -->
-            <div class="card" style="grid-column: 13 / span 2; grid-row: 4;">
-                <div class="card-title">Reverse matching missions</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/12 - 31/01/27</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Shortlist : Fév27-Avr27 (colonnes 15-17) -->
-            <div class="card" style="grid-column: 15 / span 3; grid-row: 5;">
-                <div class="card-title">Shortlist dynamique soutenances clients</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/02/27 - 30/04/27</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ═══════════════════════════════════════════════════════════════════
-             AUTOMATISATION - Décalé
+             AUTOMATISATION - Avancé de 3 mois
              ═══════════════════════════════════════════════════════════════════ -->
         <div class="grid-layout swimlane-row swimlane-auto">
             <div class="swimlane-label" style="grid-row: 1 / span 3;">
@@ -877,21 +876,67 @@
                 <div class="swimlane-title">Automatisation</div>
             </div>
             
-            <!-- Auto listes : Sept (colonne 10) -->
-            <div class="card" style="grid-column: 10 / span 1; grid-row: 1;">
+            <!-- Auto listes : Juin (colonne 7) -->
+            <div class="card" style="grid-column: 7 / span 1; grid-row: 1;">
                 <div class="card-title">Auto listes diffusion</div>
                 <span class="status-badge status-validation">STRAT. REQUIS</span>
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/09 - 30/09</span>
+                        <span class="card-meta-text">01/06 - 30/06</span>
                     </div>
                 </div>
             </div>
             
-            <!-- Sollicitations : Oct (colonne 11) -->
-            <div class="card" style="grid-column: 11 / span 1; grid-row: 2;">
+            <!-- Sollicitations : Juil (colonne 8) -->
+            <div class="card" style="grid-column: 8 / span 1; grid-row: 2;">
                 <div class="card-title">Sollicitations partenaires AO</div>
+                <span class="status-badge status-validation">STRAT. REQUIS</span>
+                <div class="card-meta">
+                    <div class="card-meta-item">
+                        <span class="card-meta-icon">📅</span>
+                        <span class="card-meta-text">01/07 - 31/07</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Intégration CV : Juil-Août (colonnes 8-9) -->
+            <div class="card" style="grid-column: 8 / span 1; grid-row: 3;">
+                <div class="card-title">Intégration CV partenaires</div>
+                <span class="status-badge status-validation">STRAT. REQUIS</span>
+                <div class="card-meta">
+                    <div class="card-meta-item">
+                        <span class="card-meta-icon">📅</span>
+                        <span class="card-meta-text">15/07 - 15/08</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════════════════
+             ECOSYSTÈME - Avancé de 3 mois
+             ═══════════════════════════════════════════════════════════════════ -->
+        <div class="grid-layout swimlane-row swimlane-eco">
+            <div class="swimlane-label" style="grid-row: 1 / span 4;">
+                <div class="swimlane-icon">🌐</div>
+                <div class="swimlane-title">Ecosystème</div>
+            </div>
+            
+            <!-- Jobboard : Août-Sept (colonnes 9-10) -->
+            <div class="card" style="grid-column: 9 / span 2; grid-row: 1;">
+                <div class="card-title">Jobboard Portail Unifié</div>
+                <span class="status-badge status-validation">STRAT. REQUIS</span>
+                <div class="card-meta">
+                    <div class="card-meta-item">
+                        <span class="card-meta-icon">📅</span>
+                        <span class="card-meta-text">01/08 - 30/09</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Passerelle : Oct (colonne 11) -->
+            <div class="card" style="grid-column: 11 / span 1; grid-row: 2;">
+                <div class="card-title">Passerelle ↔ Portail Unifiée</div>
                 <span class="status-badge status-validation">STRAT. REQUIS</span>
                 <div class="card-meta">
                     <div class="card-meta-item">
@@ -901,31 +946,21 @@
                 </div>
             </div>
             
-            <!-- Intégration CV : Oct (colonne 11) -->
+            <!-- Talenteed : Oct (colonne 11) -->
             <div class="card" style="grid-column: 11 / span 1; grid-row: 3;">
-                <div class="card-title">Intégration CV partenaires</div>
+                <div class="card-title">Talenteed : certifications & skills</div>
                 <span class="status-badge status-validation">STRAT. REQUIS</span>
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">15/10 - 15/11</span>
+                        <span class="card-meta-text">01/10 - 31/10</span>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- ═══════════════════════════════════════════════════════════════════
-             ECOSYSTÈME - Décalé
-             ═══════════════════════════════════════════════════════════════════ -->
-        <div class="grid-layout swimlane-row swimlane-eco">
-            <div class="swimlane-label" style="grid-row: 1 / span 4;">
-                <div class="swimlane-icon">🌐</div>
-                <div class="swimlane-title">Ecosystème</div>
-            </div>
             
-            <!-- Jobboard : Nov-Déc (colonnes 12-13) -->
-            <div class="card" style="grid-column: 12 / span 2; grid-row: 1;">
-                <div class="card-title">Jobboard Portail Unifié</div>
+            <!-- Sourceuse HP : Nov-Déc (colonnes 12-13) -->
+            <div class="card" style="grid-column: 12 / span 2; grid-row: 4;">
+                <div class="card-title">Sourceuse HP</div>
                 <span class="status-badge status-validation">STRAT. REQUIS</span>
                 <div class="card-meta">
                     <div class="card-meta-item">
@@ -934,46 +969,10 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Passerelle : Jan27 (colonne 14) -->
-            <div class="card" style="grid-column: 14 / span 1; grid-row: 2;">
-                <div class="card-title">Passerelle ↔ Portail Unifiée</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/01/27 - 31/01/27</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Talenteed : Jan27 (colonne 14) -->
-            <div class="card" style="grid-column: 14 / span 1; grid-row: 3;">
-                <div class="card-title">Talenteed : certifications & skills</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/01/27 - 31/01/27</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Sourceuse HP : Fév27-Mar27 (colonnes 15-16) -->
-            <div class="card" style="grid-column: 15 / span 2; grid-row: 4;">
-                <div class="card-title">Sourceuse HP</div>
-                <span class="status-badge status-validation">STRAT. REQUIS</span>
-                <div class="card-meta">
-                    <div class="card-meta-item">
-                        <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/02/27 - 31/03/27</span>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- ═══════════════════════════════════════════════════════════════════
-             PARCOURS CLIENT - Décalé
+             PARCOURS CLIENT - Avancé de 3 mois
              ═══════════════════════════════════════════════════════════════════ -->
         <div class="grid-layout swimlane-row swimlane-parcours">
             <div class="swimlane-label" style="grid-row: 1 / span 3;">
@@ -981,45 +980,45 @@
                 <div class="swimlane-title">Parcours client</div>
             </div>
             
-            <!-- Conversion : Fév27 (colonne 15) -->
-            <div class="card" style="grid-column: 15 / span 1; grid-row: 1;">
+            <!-- Conversion : Nov (colonne 12) -->
+            <div class="card" style="grid-column: 12 / span 1; grid-row: 1;">
                 <div class="card-title">Conversion besoin → opportunité SF</div>
                 <span class="status-badge status-validation">STRAT. REQUIS</span>
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/02/27 - 28/02/27</span>
+                        <span class="card-meta-text">01/11 - 30/11</span>
                     </div>
                 </div>
             </div>
             
-            <!-- Priorisation : Mar27-Avr27 (colonnes 16-17) -->
-            <div class="card" style="grid-column: 16 / span 2; grid-row: 2;">
+            <!-- Priorisation : Déc-Jan27 (colonnes 13-14) -->
+            <div class="card" style="grid-column: 13 / span 2; grid-row: 2;">
                 <div class="card-title">Priorisation talents client</div>
                 <span class="status-badge status-validation">STRAT. REQUIS</span>
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/03/27 - 30/04/27</span>
+                        <span class="card-meta-text">01/12 - 31/01/27</span>
                     </div>
                 </div>
             </div>
             
-            <!-- VMS : Mar27 (colonne 16) -->
-            <div class="card" style="grid-column: 16 / span 1; grid-row: 3;">
+            <!-- VMS : Déc (colonne 13) -->
+            <div class="card" style="grid-column: 13 / span 1; grid-row: 3;">
                 <div class="card-title">Intégration VMS</div>
                 <span class="status-badge status-validation">STRAT. REQUIS</span>
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/03/27 - 31/03/27</span>
+                        <span class="card-meta-text">01/12 - 31/12</span>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- ═══════════════════════════════════════════════════════════════════
-             CONFORMITÉ - Décalé
+             CONFORMITÉ - Avancé de 3 mois
              ═══════════════════════════════════════════════════════════════════ -->
         <div class="grid-layout swimlane-row swimlane-conformite">
             <div class="swimlane-label" style="grid-row: 1 / span 1;">
@@ -1027,14 +1026,14 @@
                 <div class="swimlane-title">Conformité</div>
             </div>
             
-            <!-- RQTH : Avr27 (colonne 17) -->
-            <div class="card" style="grid-column: 17 / span 1; grid-row: 1;">
+            <!-- RQTH : Jan27 (colonne 14) -->
+            <div class="card" style="grid-column: 14 / span 1; grid-row: 1;">
                 <div class="card-title">Déclaration RQTH</div>
                 <span class="status-badge status-validation">STRAT. REQUIS</span>
                 <div class="card-meta">
                     <div class="card-meta-item">
                         <span class="card-meta-icon">📅</span>
-                        <span class="card-meta-text">01/04/27 - 30/04/27</span>
+                        <span class="card-meta-text">01/01/27 - 31/01/27</span>
                     </div>
                 </div>
             </div>
