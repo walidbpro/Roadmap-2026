@@ -269,8 +269,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 16px;
-            padding: 8px 16px;
+            gap: 20px;
+            padding: 10px 20px;
             margin-bottom: 6px;
             background: linear-gradient(135deg, rgba(248, 113, 113, 0.1) 0%, rgba(251, 191, 36, 0.1) 100%);
             border: 2px solid rgba(248, 113, 113, 0.3);
@@ -280,23 +280,24 @@
 
         .comparison-item {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 2px;
+            gap: 8px;
         }
 
         .comparison-label {
-            font-size: 0.55rem;
-            font-weight: 600;
+            font-size: 0.6rem;
+            font-weight: 700;
             color: #94a3b8;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
         .comparison-value {
             font-size: 0.85rem;
             font-weight: 900;
-            padding: 2px 10px;
+            padding: 4px 14px;
             border-radius: 6px;
+            white-space: nowrap;
         }
 
         .comparison-value.old {
@@ -310,18 +311,20 @@
         }
 
         .comparison-arrow {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: #64748b;
+            line-height: 1;
         }
 
         .comparison-delta {
             background: linear-gradient(135deg, #f59e0b, #d97706);
             color: #ffffff;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: 900;
-            padding: 4px 12px;
+            padding: 6px 16px;
             border-radius: 6px;
             box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+            white-space: nowrap;
         }
 
         .legend-bar {
@@ -408,10 +411,10 @@
         /* GRILLE - VERSION SANS RENFORT (32 colonnes) */
         .grid-layout-sans {
             display: grid;
-            grid-template-columns: var(--sidebar-width) repeat(32, minmax(50px, 1fr));
+            grid-template-columns: var(--sidebar-width) repeat(32, minmax(55px, 1fr));
             gap: 2px;
             align-items: stretch;
-            min-width: calc(var(--sidebar-width) + (32 * 50px) + (33 * 2px));
+            min-width: calc(var(--sidebar-width) + (32 * 55px) + (33 * 2px));
         }
 
         /* COLONNE STICKY GAUCHE */
@@ -733,18 +736,42 @@
         .top5-badge-icon { font-size: 0.55rem; }
 
         .card-title { 
-            font-size: 0.65rem;
+            font-size: 0.58rem;
             font-weight: 700; 
-            line-height: 1.2; 
+            line-height: 1.25; 
             color: #ffffff;
             letter-spacing: -0.01em;
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-shadow: 
                 0 1px 2px rgba(0, 0, 0, 0.6),
                 0 2px 4px rgba(0, 0, 0, 0.3);
+            word-break: break-word;
+        }
+
+        /* Tooltip au survol pour voir le titre complet */
+        .card[title]:hover::after {
+            content: attr(title);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.95);
+            color: #ffffff;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            white-space: nowrap;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            pointer-events: none;
+            max-width: 250px;
+            white-space: normal;
+            text-align: center;
         }
         
         .status-badge { 
@@ -1087,7 +1114,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Jan - Fév</span>
+                            <span class="card-meta-text">01/01 - 28/02</span>
                         </div>
                     </div>
                 </div>
@@ -1106,7 +1133,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Mars - Avril</span>
+                            <span class="card-meta-text">01/03 - 30/04</span>
                         </div>
                     </div>
                 </div>
@@ -1125,7 +1152,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Avril - Mai</span>
+                            <span class="card-meta-text">01/04 - 31/05</span>
                         </div>
                     </div>
                 </div>
@@ -1136,7 +1163,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Mai - Juin</span>
+                            <span class="card-meta-text">01/04 - 30/06</span>
                         </div>
                     </div>
                 </div>
@@ -1146,7 +1173,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Juil - Août - 31/08</span>
+                            <span class="card-meta-text">01/07 - 31/08</span>
                         </div>
                     </div>
                 </div>
@@ -1156,7 +1183,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Sept - Oct</span>
+                            <span class="card-meta-text">01/09 - 31/10</span>
                         </div>
                     </div>
                 </div>
@@ -1166,7 +1193,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Nov - Juil</span>
+                            <span class="card-meta-text">01/11 - 31/01/27</span>
                         </div>
                     </div>
                 </div>
@@ -1185,7 +1212,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Mai - Juin</span>
+                            <span class="card-meta-text">01/05 - 30/06</span>
                         </div>
                     </div>
                 </div>
@@ -1203,7 +1230,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Juin</span>
+                            <span class="card-meta-text">01/06 - 30/06</span>
                         </div>
                     </div>
                 </div>
@@ -1213,7 +1240,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Juillet</span>
+                            <span class="card-meta-text">01/07 - 31/07</span>
                         </div>
                     </div>
                 </div>
@@ -1223,7 +1250,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Juil - Août</span>
+                            <span class="card-meta-text">15/07 - 15/08</span>
                         </div>
                     </div>
                 </div>
@@ -1241,7 +1268,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Août - Sep</span>
+                            <span class="card-meta-text">01/08 - 30/09</span>
                         </div>
                     </div>
                 </div>
@@ -1251,7 +1278,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Oct</span>
+                            <span class="card-meta-text">01/10 - 31/10</span>
                         </div>
                     </div>
                 </div>
@@ -1261,7 +1288,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Oct</span>
+                            <span class="card-meta-text">01/10 - 31/10</span>
                         </div>
                     </div>
                 </div>
@@ -1271,7 +1298,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Nov - Déc</span>
+                            <span class="card-meta-text">01/11 - 31/12</span>
                         </div>
                     </div>
                 </div>
@@ -1289,7 +1316,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Nov</span>
+                            <span class="card-meta-text">01/11 - 30/11</span>
                         </div>
                     </div>
                 </div>
@@ -1299,7 +1326,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Déc - Jan</span>
+                            <span class="card-meta-text">01/12 - 31/01/27</span>
                         </div>
                     </div>
                 </div>
@@ -1309,7 +1336,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Déc</span>
+                            <span class="card-meta-text">01/12 - 31/12</span>
                         </div>
                     </div>
                 </div>
@@ -1327,7 +1354,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Jan</span>
+                            <span class="card-meta-text">01/01/27 - 31/01/27</span>
                         </div>
                     </div>
                 </div>
@@ -1365,7 +1392,7 @@
                     <div class="card-meta">
                         <div class="card-meta-item">
                             <span class="card-meta-icon">📅</span>
-                            <span class="card-meta-text">Oct - Déc</span>
+                            <span class="card-meta-text">Oct - Déc 26</span>
                         </div>
                     </div>
                 </div>
@@ -1434,7 +1461,7 @@
                 <span class="comparison-label">Sans renfort :</span>
                 <span class="comparison-value new">Q3 2028</span>
             </div>
-            <div class="comparison-delta">+18 mois</div>
+            <span class="comparison-delta">+18 mois</span>
         </div>
 
         <div class="legend-bar">
@@ -1555,8 +1582,8 @@
                     <div class="swimlane-icon">🤖</div>
                     <div class="swimlane-title">IA</div>
                 </div>
-                <div class="card" style="grid-column: 9 / span 2; grid-row: 1;">
-                    <div class="card-title">Matching candidatures</div>
+                <div class="card" style="grid-column: 9 / span 2; grid-row: 1;" title="Matching candidatures ↔ besoins">
+                    <div class="card-title">Matching candidatures ↔ besoins</div>
                     <span class="top5-badge"><span class="top5-badge-icon">🏆</span> TOP 5</span>
                     <span class="status-badge status-planned">PLANIFIÉ</span>
                     <div class="card-meta">
@@ -1566,7 +1593,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" style="grid-column: 11 / span 3; grid-row: 2;">
+                <div class="card" style="grid-column: 11 / span 3; grid-row: 2;" title="Assistance qualification">
                     <div class="card-title">Assistance qualification</div>
                     <span class="top5-badge"><span class="top5-badge-icon">🏆</span> TOP 5</span>
                     <span class="status-badge status-validation">PLANIFIÉ</span>
@@ -1577,8 +1604,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" style="grid-column: 14 / span 2; grid-row: 3;">
-                    <div class="card-title">Génération dossier</div>
+                <div class="card" style="grid-column: 14 / span 2; grid-row: 3;" title="Génération dossier compétences">
+                    <div class="card-title">Génération dossier compétences</div>
                     <span class="status-badge status-validation">STRAT. REQUIS</span>
                     <div class="card-meta">
                         <div class="card-meta-item">
@@ -1587,8 +1614,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" style="grid-column: 16 / span 2; grid-row: 4;">
-                    <div class="card-title">Reverse matching</div>
+                <div class="card" style="grid-column: 16 / span 2; grid-row: 4;" title="Reverse matching missions">
+                    <div class="card-title">Reverse matching missions</div>
                     <span class="status-badge status-validation">STRAT. REQUIS</span>
                     <div class="card-meta">
                         <div class="card-meta-item">
@@ -1597,8 +1624,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" style="grid-column: 18 / span 3; grid-row: 5;">
-                    <div class="card-title">Shortlist dynamique</div>
+                <div class="card" style="grid-column: 18 / span 3; grid-row: 5;" title="Shortlist dynamique soutenances clients">
+                    <div class="card-title">Shortlist dynamique soutenances</div>
                     <span class="status-badge status-validation">STRAT. REQUIS</span>
                     <div class="card-meta">
                         <div class="card-meta-item">
@@ -1615,8 +1642,8 @@
                     <div class="swimlane-icon">⚡</div>
                     <div class="swimlane-title">Automatisation</div>
                 </div>
-                <div class="card" style="grid-column: 21 / span 1; grid-row: 1;">
-                    <div class="card-title">Auto listes</div>
+                <div class="card" style="grid-column: 21 / span 1; grid-row: 1;" title="Auto listes diffusion">
+                    <div class="card-title">Auto listes diffusion</div>
                     <span class="status-badge status-validation">STRAT. REQUIS</span>
                     <div class="card-meta">
                         <div class="card-meta-item">
@@ -1625,8 +1652,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" style="grid-column: 22 / span 1; grid-row: 2;">
-                    <div class="card-title">Sollicitations</div>
+                <div class="card" style="grid-column: 22 / span 1; grid-row: 2;" title="Sollicitations partenaires AO">
+                    <div class="card-title">Sollicitations partenaires AO</div>
                     <span class="status-badge status-validation">STRAT. REQUIS</span>
                     <div class="card-meta">
                         <div class="card-meta-item">
@@ -1635,8 +1662,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" style="grid-column: 23 / span 1; grid-row: 3;">
-                    <div class="card-title">Intégration CV</div>
+                <div class="card" style="grid-column: 23 / span 1; grid-row: 3;" title="Intégration CV partenaires">
+                    <div class="card-title">Intégration CV partenaires</div>
                     <span class="status-badge status-validation">STRAT. REQUIS</span>
                     <div class="card-meta">
                         <div class="card-meta-item">
@@ -1653,8 +1680,8 @@
                     <div class="swimlane-icon">🌐</div>
                     <div class="swimlane-title">Ecosystème</div>
                 </div>
-                <div class="card" style="grid-column: 24 / span 2; grid-row: 1;">
-                    <div class="card-title">Jobboard</div>
+                <div class="card" style="grid-column: 24 / span 2; grid-row: 1;" title="Jobboard Portail Unifié">
+                    <div class="card-title">Jobboard Portail Unifié</div>
                     <span class="status-badge status-validation">STRAT. REQUIS</span>
                     <div class="card-meta">
                         <div class="card-meta-item">
@@ -1663,8 +1690,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" style="grid-column: 26 / span 1; grid-row: 2;">
-                    <div class="card-title">Passerelle</div>
+                <div class="card" style="grid-column: 26 / span 1; grid-row: 2;" title="Passerelle ↔ Portail Unifiée">
+                    <div class="card-title">Passerelle ↔ Portail</div>
                     <span class="status-badge status-validation">STRAT. REQUIS</span>
                     <div class="card-meta">
                         <div class="card-meta-item">
@@ -1673,8 +1700,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" style="grid-column: 27 / span 1; grid-row: 3;">
-                    <div class="card-title">Talenteed</div>
+                <div class="card" style="grid-column: 27 / span 1; grid-row: 3;" title="Talenteed : certifications & skills">
+                    <div class="card-title">Talenteed certif & skills</div>
                     <span class="status-badge status-validation">STRAT. REQUIS</span>
                     <div class="card-meta">
                         <div class="card-meta-item">
@@ -1683,7 +1710,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" style="grid-column: 28 / span 2; grid-row: 4;">
+                <div class="card" style="grid-column: 28 / span 2; grid-row: 4;" title="Sourceuse HP">
                     <div class="card-title">Sourceuse HP</div>
                     <span class="status-badge status-validation">STRAT. REQUIS</span>
                     <div class="card-meta">
@@ -1701,8 +1728,8 @@
                     <div class="swimlane-icon">👤</div>
                     <div class="swimlane-title">Parcours</div>
                 </div>
-                <div class="card" style="grid-column: 30 / span 1; grid-row: 1;">
-                    <div class="card-title">Conversion</div>
+                <div class="card" style="grid-column: 30 / span 1; grid-row: 1;" title="Conversion besoin → opportunité SF">
+                    <div class="card-title">Conversion besoin → opportunité</div>
                     <span class="status-badge status-validation">STRAT. REQUIS</span>
                     <div class="card-meta">
                         <div class="card-meta-item">
@@ -1711,8 +1738,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" style="grid-column: 31 / span 2; grid-row: 2;">
-                    <div class="card-title">Priorisation</div>
+                <div class="card" style="grid-column: 31 / span 2; grid-row: 2;" title="Priorisation talents client">
+                    <div class="card-title">Priorisation talents client</div>
                     <span class="status-badge status-validation">STRAT. REQUIS</span>
                     <div class="card-meta">
                         <div class="card-meta-item">
@@ -1721,8 +1748,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" style="grid-column: 33 / span 1; grid-row: 3;">
-                    <div class="card-title">VMS</div>
+                <div class="card" style="grid-column: 33 / span 1; grid-row: 3;" title="Intégration VMS">
+                    <div class="card-title">Intégration VMS</div>
                     <span class="status-badge status-validation">STRAT. REQUIS</span>
                     <div class="card-meta">
                         <div class="card-meta-item">
